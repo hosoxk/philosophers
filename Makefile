@@ -7,7 +7,8 @@ SRC_DIR = ./sources
 LIBFT_DIR = ./sources/libft
 
 SRC_FILES = $(SRC_DIR)/main.c \
-		$(SRC_DIR)/parsing.c
+		$(SRC_DIR)/parsing.c \
+		$(SRC_DIR)/init.c
 
 OBJ_FILES = $(SRC_FILES:.c=.o)
 
@@ -22,7 +23,7 @@ all: $(LIBFT) $(NAME)
 $(NAME): $(OBJ_FILES) $(LIBFT)
 	@echo "$(YELLOW)Linking $(NAME) to $(OBJ_FILES)...$(RESET)"
 	$(CC) $(CFLAGS) $(OBJ_FILES) $(LIBFT) -o $(NAME)
-	@echo "$(GREEN)Compilation successfull!$(RESET)"
+	@echo "$(GREEN)Compilation $(NAME) successfull!$(RESET)"
 
 %.o: %.c
 	@echo "$(YELLOW)Compiling $(notdir $<)...$(RESET)"
