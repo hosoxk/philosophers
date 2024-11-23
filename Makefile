@@ -8,7 +8,7 @@ LIBFT_DIR = ./sources/libft
 
 SRC_FILES = $(SRC_DIR)/main.c \
 		$(SRC_DIR)/parsing.c \
-		$(SRC_DIR)/init.c
+		$(SRC_DIR)/utils.c
 
 OBJ_FILES = $(SRC_FILES:.c=.o)
 
