@@ -11,6 +11,7 @@
 #include <pthread.h> //mutex and threads
 #include <sys/time.h> //gettimeofday
 #include <limits.h> //INT_MAX
+#include <errno.h>
 
 //*** ANSI escape sequences for bold text colors ***
 // Usage: printf(BOLD_RED "This text is bold red!" RESET "\n");
@@ -24,13 +25,23 @@
 #define BOLD_CYAN	"\033[1;36m"
 #define BOLD_WHITE	"\033[1;37m"
 
+//*** OPCODE for mutex | thread functions
+typedef enum	e_opcode
+{
+	LOCK,
+	UNLOCK,
+	INIT,
+	DESTROY,
+	CREATE,
+	JOIN,
+	DETACH,
+}	t_opcode;
+
 //*** structures ***
 
 typedef pthread_mutex_t	t_mtx;
 
-/*
-* IOU for compiler
-*/
+//IOU for compiler
 typedef struct s_table	t_table;
 
 typedef struct	s_fork
@@ -45,8 +56,8 @@ typedef struct s_philo
 	long		meals_counter;
 	bool		full;
 	long		last_meal_time; //time passed from last meal
-	t_fork		*left_fork;
-	t_fork		*right_fork;
+	t_fork		*first_fork;
+	t_fork		*second_fork;
 	pthread_t	thread_id;
 	t_table		*table;
 }	t_philo;
@@ -69,7 +80,12 @@ typedef struct	s_table
 //parsing
 void	parse_input(t_table *table, char **argv);
 //initializing
+void	init_data(t_table *table);
 //utils
 void	error_exit(const char *error);
+//safe functions
+void	*safe_malloc(size_t bytes);
+void	safe_thread_error(pthread_t *thread, void *(*foo)(void *), void *data, t_opcode opcode);
+void	safe_mutex_handle(t_mtx *mutex, t_opcode opcode);
 
 # endif
