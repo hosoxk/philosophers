@@ -20,6 +20,7 @@ OBJ_FILES = $(SRC_FILES:.c=.o)
 
 LIBFT = $(LIBFT_DIR)/libft.a
 
+MAGENTA = \033[1;35m
 YELLOW = \033[1;33m
 GREEN = \033[1;32m
 RESET = \033[0m
@@ -27,6 +28,8 @@ RESET = \033[0m
 all: $(LIBFT) $(NAME)
 
 $(NAME): $(OBJ_FILES) $(LIBFT)
+	@echo "$(MAGENTA)Using compiler: $(CC)$(RESET)"
+	@echo "$(MAGENTA)Using flags: $(CFLAGS) $(RESET)"
 	@echo "$(YELLOW)Linking $(NAME) to $(OBJ_FILES)...$(RESET)"
 	$(CC) $(CFLAGS) $(OBJ_FILES) $(LIBFT) -o $(NAME)
 	@echo "$(GREEN)Compilation $(NAME) successfull!$(RESET)"
