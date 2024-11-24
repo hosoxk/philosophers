@@ -30,8 +30,7 @@ static void	handle_thread_error(int status, t_opcode opcode)
 			"thread specifies the calling thread");
 }
 
-void	safe_thread_handle(pthread_t *thread, void *(*foo)(void *),
-	void *data, t_opcode opcode)
+void	safe_thread_handle(pthread_t *thread, void *(*foo)(void *), void *data, t_opcode opcode)
 {
 	if (opcode == CREATE)
 		handle_thread_error(pthread_create(thread, NULL, foo, data), opcode);

@@ -10,7 +10,11 @@ SRC_FILES = $(SRC_DIR)/main.c \
 		$(SRC_DIR)/parsing.c \
 		$(SRC_DIR)/utils.c \
 		$(SRC_DIR)/safe_functions.c \
-		$(SRC_DIR)/init.c
+		$(SRC_DIR)/init.c \
+		$(SRC_DIR)/dinner.c \
+		$(SRC_DIR)/write.c \
+		$(SRC_DIR)/getters_setters.c \
+		$(SRC_DIR)/synchro_utils.c
 
 OBJ_FILES = $(SRC_FILES:.c=.o)
 
