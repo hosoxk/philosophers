@@ -1,8 +1,6 @@
 #ifndef PHILO_H
 # define PHILO_H
 
-#include "./sources/libft/libft.h"
-#include "./sources/libft/sources/ft_printf/ft_printf.h"
 #include <stdbool.h>
 #include <pthread.h>
 #include <stdio.h>
@@ -26,7 +24,7 @@
 #define BOLD_WHITE	"\033[1;37m"
 
 //*** write function macro ***
-#define DEBUG_MODE 0
+#define DEBUG_MODE 1
 
 //*** philo states ***
 typedef enum e_status

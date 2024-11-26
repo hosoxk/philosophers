@@ -26,6 +26,7 @@ static void	init_philo(t_table *table)
 		philo->meals_counter = 0;
 		philo->table = table;
 		safe_mutex_handle(&philo->philo_mutex, INIT);
+		//ad hoc
 		assign_forks(philo, table->forks, i);
 	}
 }
