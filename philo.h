@@ -85,18 +85,20 @@ typedef struct s_philo
 
 typedef struct	s_table
 {
-	long	philo_nbr;
-	long	time_to_die;
-	long	time_to_eat;
-	long	time_to_sleep;
-	long	nbr_limit_meals;
-	long	start_simulation;
-	bool	end_simulation; //a philo dies or all philos are full
-	bool	all_threads_ready; //synchronize philos
-	t_mtx	table_mutex; //avoid races while reading from table
-	t_mtx	write_mutex;
-	t_fork	*forks; //array forks
-	t_philo	*philos; //array philos
+	long		philo_nbr;
+	long		time_to_die;
+	long		time_to_eat;
+	long		time_to_sleep;
+	long		nbr_limit_meals;
+	long		start_simulation;
+	bool		end_simulation; //a philo dies or all philos are full
+	bool		all_threads_ready; //synchronize philos
+	long		threads_running_nbr;
+	pthread_t	monitor;
+	t_mtx		table_mutex; //avoid races while reading from table
+	t_mtx		write_mutex;
+	t_fork		*forks; //array forks
+	t_philo		*philos; //array philos
 }	t_table;
 
 //*** prototypes ***
@@ -120,6 +122,8 @@ void	safe_thread_handle(pthread_t *thread, void *(*foo)(void *), void *data, t_o
 
 //synchro utils
 void	wait_all_threads(t_table *table);
+void	increase_long(t_mtx *mutex, long *value);
+bool	all_threads_running(t_mtx *mutex, long *threads, long philo_nbr);
 
 //setters and getters
 void	set_bool(t_mtx *mutex, bool *dest, bool value);
@@ -133,6 +137,10 @@ void	write_status(t_philo_status status, t_philo *philo, bool debug);
 
 //dinner simulation
 void	dinner_start(t_table *table);
+void	*lone_philo(void *arg);
 void	*dinner_simulation(void *data);
+
+//monitor
+void	*monitor_dinner(void *data);
 
 # endif

@@ -13,7 +13,8 @@ SRC_FILES = $(SRC_DIR)/main.c \
 		$(SRC_DIR)/dinner.c \
 		$(SRC_DIR)/write.c \
 		$(SRC_DIR)/getters_setters.c \
-		$(SRC_DIR)/synchro_utils.c
+		$(SRC_DIR)/synchro_utils.c \
+		$(SRC_DIR)/monitor.c
 
 OBJ_FILES = $(SRC_FILES:.c=.o)
 
